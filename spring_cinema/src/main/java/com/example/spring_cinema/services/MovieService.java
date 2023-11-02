@@ -36,7 +36,7 @@ public class MovieService {
 
     //to find a movie in table's id field:
     public Optional<Movie> getMovieId(long id) {
-        assert movieRepository != null;
-        return movieRepository.findById(id);
+        assert movieRepository != null;             //assert that movie is empty/not 'null'
+        return movieRepository.findById(id);        //return all the contents of movie repo interface.
     }
 }
