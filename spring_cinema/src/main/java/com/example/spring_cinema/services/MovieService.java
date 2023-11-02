@@ -8,30 +8,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieService {
 
     @Autowired
-    MovieRepository movieRepository;        //to connect this class to the repository.
-
-    @Autowired
-    MovieController movieController;        //to connect this class to the controller.
-
-    private List<Movie> movieList;
+    MovieRepository movieRepository;        //to connect this class to the controller.
 
     public MovieService(){
     }
 
-
-    public void setMovieRepository(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
-    }
-
-
-    public void setMovieList(List<Movie> movieList) {
-        this.movieList = movieList;
-    }
 
 
     // methods to view, find (by ID) and add new movies to the repository:
@@ -39,14 +26,17 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    //to find a movie in table's id field:
-    public Movie getMovieId(Long id) {
-        return movieRepository.getReferenceById(id);
-    }
+
 
     // to add a new movie:
     public Movie addMovie(Movie movie) {
         assert movieRepository != null;
         return movieRepository.save(movie);
+    }
+
+    //to find a movie in table's id field:
+    public Optional<Movie> getMovieId(long id) {
+        assert movieRepository != null;
+        return movieRepository.findById(id);
     }
 }

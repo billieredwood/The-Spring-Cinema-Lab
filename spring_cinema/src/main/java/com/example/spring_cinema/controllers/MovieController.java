@@ -25,10 +25,7 @@ public class MovieController {
         return new ResponseEntity<>(movie, HttpStatus.CREATED);
     }
 
-    public Optional<Movie> getMovieId(long id) {
-        assert movieRepository !=null;
-        return movieRepository
-    }
+
 
     @GetMapping                               //route added to GET a list of movies.
     public List<Movie> getAllMovies() {
@@ -36,14 +33,10 @@ public class MovieController {
     }
 
     @GetMapping(value = "/{id}")             //route added to GET movies by id (/movies/id in postman).
-    public ResponseEntity<Movie> getMovieId(@PathVariable Long id) {
-        Movie movie = movieService.getMovieId(id);
+    public ResponseEntity<Movie> getMovieId(@PathVariable long id) {
+        Optional<Movie> movie = movieService.getMovieId(id);
         return new ResponseEntity<>(movie.get(), HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<Movie> getMovieId() {
-        Movie movie = movieService.getMovieId(id);
-        return new ResponseEntity<>(movie.get(), HttpStatus.CREATED);
 
 }
